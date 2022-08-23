@@ -2,6 +2,8 @@ server:
   port: ${SERVER_PORT:6001}
 
 spring:
+  application:
+    name: CATALOG-SERVICE
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     database: h2
@@ -25,3 +27,12 @@ spring:
       enabled: true
       settings:
         web-allow-others: true
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://${EUREKA_HOST:localhost:8761}/eureka/
+    registerWithEureka: true
+    fetch-registry: true #eureka discovery is enabled in this profile
+  instance:
+    prefer-ip-address: false
