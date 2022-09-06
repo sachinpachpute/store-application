@@ -19,6 +19,14 @@ export const getProductDetailApi = async (productId) => {
   return responseData;
 };
 
+export const createProductApi = async (productReqBody) => {
+  const axiosConfig = getAxiosConfig();
+  const responseData = await axios.post(`${BACKEND_API_GATEWAY_URL}/api/catalog/product`, productReqBody, axiosConfig).then((response) => {
+    return response.data;
+  });
+  return responseData;
+};
+
 export const getImageApi = async (imageId) => {
   const axiosConfig = getAxiosConfig();
   const responseData = axios.get(`${BACKEND_API_GATEWAY_URL}/api/catalog/image/${imageId}`, axiosConfig).then((response) => {
@@ -34,6 +42,15 @@ export const getProductReviewsApi = async (productId) => {
   return responseData;
 };
 
+export const getProductCategories = async () => {
+  const responseData = axios
+    .get(`${BACKEND_API_GATEWAY_URL}/api/catalog/productCategories?direction=ASC&orderBy=PRODUCTCATEGORYNAME`)
+    .then((response) => {
+      return response.data;
+    });
+  return responseData;
+};
+
 export const createProductReviewApi = async (createProductReviewRequestBody) => {
   const axiosConfig = getAxiosConfig();
   const responseData = axios
@@ -41,6 +58,20 @@ export const createProductReviewApi = async (createProductReviewRequestBody) => 
     .then((response) => {
       return response.data;
     });
+  return responseData;
+};
+
+export const uploadImageApi = async (axiosConfig, formData) => {
+  const accessToken = JSON.parse(localStorage.getItem('userInfo'))?.token;
+
+  if (accessToken) {
+    axiosConfig.headers.Authorization = `Bearer ${accessToken}`;
+  }
+
+  const responseData = await axios.post(`${BACKEND_API_GATEWAY_URL}/api/catalog/image/upload`, formData, axiosConfig).then((response) => {
+    console.log('Resp ::', response.data);
+    return response.data;
+  });
   return responseData;
 };
 

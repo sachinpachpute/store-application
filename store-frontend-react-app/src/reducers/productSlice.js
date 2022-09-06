@@ -86,10 +86,35 @@ export const productReviewCreateSlice = createSlice({
   }
 });
 
+export const productCreateSlice = createSlice({
+  name:'productCreate',
+  initialState: {
+    state: {},
+  },
+  reducers: {
+    productCreateRequest: (state, action) => {
+      state.loading = true;
+    },
+    productCreateSuccess: (state, action) => {
+      state.loading = false;
+      state.success = true;
+      state.product = action.payload;
+    },
+    productCreateFail: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
+    productCreateReset: (state, action) => {
+      state = {};
+    }
+  }
+});
+
 //export default productListSlice.reducer;
 export const { listProductsRequest, listProductsSuccess, listProductsFail } = productListSlice.actions;
 export const { productDetailsRequest, productDetailsSuccess, productDetailsFail } = productDetailsSlice.actions;
 export const { productReviewsRequest, productReviewsSuccess, productReviewsFail } = productReviewsSlice.actions;
 export const { productCreateReviewRequest, productCreateReviewSuccess, productCreateReviewFail, productCreateReviewReset } = productReviewCreateSlice.actions;
+export const { productCreateRequest, productCreateSuccess, productCreateFail, productCreateReset } = productCreateSlice.actions;
 
 //export const { listProducts,listProductsSuccess, listProductsFail, addUser, deleteUser, updateUsername } = productSlice.actions

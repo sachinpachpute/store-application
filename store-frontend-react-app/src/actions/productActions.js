@@ -11,6 +11,9 @@ import {
   productDetailsRequest,
   productDetailsSuccess,
   productDetailsFail,
+  productCreateRequest,
+  productCreateSuccess,
+  productCreateFail,
 } from "../reducers/productSlice";
 
 import { getErrorMessage } from '../service/CommonUtils';
@@ -18,7 +21,8 @@ import {
   getAllProductsDetailApi,
   getProductReviewsApi,
   createProductReviewApi,
-  getProductDetailApi
+  getProductDetailApi,
+  createProductApi,
 } from '../service/RestApiCalls';
 
 
@@ -67,6 +71,20 @@ export const listProductDetailsAction = (productId) => async (dispatch) => {
     dispatch(productDetailsFail(getErrorMessage(error)));
   }
 };
+
+export const createProductAction = (productReqBody) => async (dispatch) => {
+  try {
+    dispatch(productCreateRequest());
+    await createProductApi(productReqBody);
+    dispatch(productCreateSuccess());
+  } catch (error) {
+    const message = error.response && error.response.data.message ? error.response.data.message : error.message;
+    if (message === 'Not authorized, token failed') {
+      //dispatch(logout());
+    }
+    dispatch(productCreateFail(message));
+  }
+}
 
 
 
