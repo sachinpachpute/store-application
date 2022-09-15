@@ -7,6 +7,9 @@ import {
   productReviewCreateSlice,
   productCreateSlice,
 } from './reducers/productSlice';
+import{
+  userLoginSlice,
+} from './reducers/userSlice';
 import ToastMiddleware from './middlewares/ToastMiddleware';
 
 const store = configureStore({ 
@@ -16,7 +19,7 @@ const store = configureStore({
     productReviews: productReviewsSlice.reducer,
     productReviewCreate: productReviewCreateSlice.reducer,
     productCreate: productCreateSlice.reducer,
-    //userReducer: userSlice,
+    userLogin: userLoginSlice.reducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger, ToastMiddleware),
 })

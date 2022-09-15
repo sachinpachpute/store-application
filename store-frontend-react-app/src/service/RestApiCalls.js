@@ -2,6 +2,30 @@ import { APP_CLIENT_ID, APP_CLIENT_SECRET, BACKEND_API_GATEWAY_URL } from '../co
 import axios from 'axios';
 import qs from 'qs';
 
+export const postLoginApi = async (loginRequestBody) => {
+  const axiosConfig = {
+    headers: {
+      'Authorization': 'Basic ' + Buffer.from(APP_CLIENT_ID + ':' + APP_CLIENT_SECRET).toString('base64'),
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  };
+  const loginRequestBodyEncoded = qs.stringify(loginRequestBody);
+  const responseData = await axios
+    .post(`${BACKEND_API_GATEWAY_URL}/api/account/oauth/token`, loginRequestBodyEncoded, axiosConfig)
+    .then((response) => {
+      return response.data;
+    });
+  return responseData;
+};
+
+export const getUserInfoApi = async () => {
+  const axiosConfig = getAxiosConfig();
+  const responseData = await axios.get(`${BACKEND_API_GATEWAY_URL}/api/account/userInfo`, axiosConfig).then((response) => {
+    return response.data;
+  });
+  return responseData;
+};
+
 export const getAllProductsDetailApi = async (pageNumber) => {
     /*const responseData = axios.get("https://fakestoreapi.com/products").then((response) => {
     return response.data;*/

@@ -1,6 +1,6 @@
 package com.sp.spring.catalogservice.entity;
 
-import com.sp.spring.storecommons.util.DateAudit;
+import com.sp.spring.catalogservice.util.DateAudit;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 

@@ -100,12 +100,12 @@ const ProductCreateScreen = ({ match, history }) => {
                     src={`${BACKEND_API_GATEWAY_URL}/api/catalog/image/${image}`}
                     alt={image}
                     style={{ height: '400px' }}
-                    fluid
-                    rounded
+                    fluid="true"
+                    rounded = "true"
                   ></img>
                   {uploading && <Loader />}
                 </Form.Group>
-                <Form.Control type="file" className='mt-5 mr-4' id='image-file' label='Choose File' custom onChange={uploadFileHandler}></Form.Control>
+                <Form.Control type="file" className='mt-5 mr-4' id='image-file' label='Choose File' custom="true" onChange={uploadFileHandler}></Form.Control>
               </Row>
             </Col>
             <Col>

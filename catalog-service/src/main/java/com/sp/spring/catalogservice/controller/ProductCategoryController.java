@@ -24,8 +24,8 @@ public class ProductCategoryController {
     @Autowired
     ProductCategoryService productCategoryService;
 
-    @CrossOrigin("*")
     @PostMapping("/productCategory")
+    @CrossOrigin("*")
     public ResponseEntity<?> createProductCategory(@RequestBody @Valid CreateProductCategoryRequest createProductCategoryRequest){
 
         String productCategory = productCategoryService.createProductCategory(createProductCategoryRequest);
@@ -37,8 +37,8 @@ public class ProductCategoryController {
         return ResponseEntity.created(location).build();
     }
 
-    @CrossOrigin("*")
     @GetMapping("/productCategory/{productCategoryId}")
+    @CrossOrigin("*")
     public ResponseEntity<ProductCategory> getProductCategory(@PathVariable("productCategoryId") String productCategoryId) {
 
         ProductCategory productCategory = productCategoryService.getProductCategory(productCategoryId);
@@ -62,8 +62,8 @@ public class ProductCategoryController {
         return ResponseEntity.noContent().build();
     }
 
-    @CrossOrigin("*")
     @GetMapping(value = "/productCategories", produces = "application/json")
+    @CrossOrigin("*")
     public ResponseEntity<?> getAllProductCategories(@RequestParam(value = "sort", required = false) String sort,
                                                      @RequestParam(value = "page", required = false) Integer page,
                                                      @RequestParam(value = "size", required = false) Integer size,
