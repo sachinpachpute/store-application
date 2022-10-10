@@ -2,13 +2,17 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="eureka-discovery-service" />
+        <module name="store-feign" />
         <module name="api-gateway-service" />
         <module name="catalog-service" />
+        <module name="eureka-discovery-service" />
+        <module name="order-service" />
+        <module name="account-service" />
         <module name="store-commons" />
       </profile>
     </annotationProcessing>
@@ -30,6 +34,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="account-service" options="-parameters" />
       <module name="another-commons" options="-parameters" />
       <module name="api-gateway-service" options="-parameters" />
       <module name="backup-commons" options="-parameters" />
@@ -39,11 +44,13 @@
       <module name="fifth-commons" options="-parameters" />
       <module name="fourth-commons" options="-parameters" />
       <module name="hello-world" options="-parameters" />
+      <module name="order-service" options="-parameters" />
       <module name="quick-start" options="" />
       <module name="sixth-commons" options="-parameters" />
       <module name="store-application" options="-parameters" />
       <module name="store-catalog-service" options="-parameters" />
       <module name="store-commons" options="-parameters" />
+      <module name="store-feign" options="-parameters" />
       <module name="third-common" options="-parameters" />
       <module name="third-commons" options="-parameters" />
     </option>

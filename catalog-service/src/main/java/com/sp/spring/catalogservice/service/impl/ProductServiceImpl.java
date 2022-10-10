@@ -34,14 +34,11 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     private ReviewRepository reviewRepository;
 
-    /*@Autowired
-    private ReviewService reviewService;*/
+    @Autowired
+    private ReviewService reviewService;
 
     @Autowired
     ObjectMapper objectMapper;
-
-    @Autowired
-    ReviewService reviewService;
 
     @Override
     public ProductResponse getProduct(String productId) {

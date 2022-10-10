@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { BACKEND_API_GATEWAY_URL } from '../constants/appConstants';
 import { Button, Card, Col, Form, Image, ListGroup, ListGroupItem, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import FullPageLoader from '../components/FullPageLoader';
 import { 
   createProductReviewAction,
@@ -50,15 +50,15 @@ const ProductScreen = (props) => {
     fetchData();
   }, [dispatch, product?.imageId]);
 
-
+  let navigate = useNavigate()
   const addToCartHandler = () => {
-    props.history.push(`/cart/${Number(id)}?qty=${qty}`);
+    navigate(`/cart/${Number(id)}?qty=${qty}`);
   };
 
   const createProductReviewHandler = (e) => {
-    e.preventDefault();
+    e.preventDefault();    
     dispatch(
-      createProductReviewAction({
+      createProductReviewAction({ 
         productId: Number(id),
         ratingValue: rating,
         reviewMessage: reviewMessage
@@ -173,13 +173,13 @@ const ProductScreen = (props) => {
                 ))}
               </ListGroup>
             </Col>
-            {/* <Col md={6} style={{ borderLeft: '1px solid #eee' }}>
+            { <Col md={6} style={{ borderLeft: '1px solid #eee' }}>
               <ListGroup.Item>
                 <h2>Write a Customer Review</h2>
                 {successProductReview && <Message variant='success'>Review submitted successfully</Message>}
                 {loadingProductReview && <Loader />}
                 {errorProductReview && <Message variant='danger'>{errorProductReview}</Message>}
-                {userInfo ? (
+                {/* {userInfo ? ( */}
                   <Form onSubmit={createProductReviewHandler}>
                     <Form.Group controlId='rating'>
                       <Form.Label>Rating</Form.Label>
@@ -205,13 +205,13 @@ const ProductScreen = (props) => {
                       Submit
                     </Button>
                   </Form>
-                ) : (
+                {/* ) : (
                   <Message>
                     Please <Link to='/login'>sign in</Link> to write a review{' '}
                   </Message>
-                )}
+                )} */}
               </ListGroup.Item>
-            </Col> */}
+            </Col> }
           </Row>
         </>
       ) : null}

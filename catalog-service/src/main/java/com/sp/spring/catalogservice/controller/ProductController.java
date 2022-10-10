@@ -13,12 +13,18 @@ import javax.validation.Valid;
 import java.net.URI;
 
 @RestController
-@CrossOrigin("*")
 //TODO Sachin
 public class ProductController {
 
     @Autowired
     private ProductService productService;
+
+    @PostMapping("/addProductTest")
+    public CreateProductRequest addProduct(@RequestBody CreateProductRequest createProductRequest) {
+        System.out.println("********************* addProduct Method called ***********************************");
+        System.out.println(createProductRequest.toString());
+        return createProductRequest;
+    }
 
     @PostMapping("/product")
     //TODO: implement hasAuthority
@@ -34,7 +40,6 @@ public class ProductController {
         return ResponseEntity.created(location).build();
     }
 
-    @CrossOrigin("*")
     @GetMapping("/product/{productId}")
     public ResponseEntity<ProductResponse> getProduct(@PathVariable("productId") String productId) {
 
@@ -42,7 +47,6 @@ public class ProductController {
 
         return ResponseEntity.ok(product);
     }
-
     @GetMapping(value = "/products", produces = "application/json")
     public ResponseEntity<?> getAllProducts(@RequestParam(value = "sort", required = false) String sort,
                                             @RequestParam(value = "page", required = false) Integer page,

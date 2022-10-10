@@ -14,6 +14,9 @@ import {
   productCreateRequest,
   productCreateSuccess,
   productCreateFail,
+  productUpdateRequest,
+  productUpdateSuccess,
+  productUpdateFail,
 } from "../reducers/productSlice";
 
 import { getErrorMessage } from '../service/CommonUtils';
@@ -24,6 +27,7 @@ import {
   createProductReviewApi,
   getProductDetailApi,
   createProductApi,
+  updateProductDetailApi,
 } from '../service/RestApiCalls';
 
 
@@ -52,7 +56,7 @@ export const listProductReviewsAction = (productId) => async (dispatch) => {
 export const createProductReviewAction = (createProductReviewRequestBody) => async (dispatch) => {
   try {
     dispatch(productCreateReviewRequest());
-    //Create Product Review
+    //Create Product Review    
     await createProductReviewApi(createProductReviewRequestBody);
     dispatch(productCreateReviewSuccess());
     dispatch(listProductDetailsAction(createProductReviewRequestBody.productId));
@@ -86,6 +90,25 @@ export const createProductAction = (productReqBody) => async (dispatch) => {
     dispatch(productCreateFail(message));
   }
 }
+
+export const updateProductAction = (productReqBody) => async (dispatch) => {
+  try {
+    dispatch(productUpdateRequest());
+    
+    //Update Product
+    await updateProductDetailApi(productReqBody);
+
+    dispatch(productUpdateSuccess());
+    
+    dispatch(listProductDetailsAction(productReqBody.productId));
+  } catch (error) {
+    const message = error.response && error.response.data.message ? error.response.data.message : error.message;
+    if (message === 'Not authorized, token failed') {
+      //dispatch(logout());
+    }
+    dispatch(productUpdateFail(message));    
+  }
+};
 
 
 

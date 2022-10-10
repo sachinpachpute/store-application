@@ -13,7 +13,6 @@ const HomeScreen = () => {
   const productList = useSelector((state) => state.productList);
   const { loading, error, products, pageResponse } = productList;
 
-
   useEffect(() => {
     dispatch(listProductsAction(0));
   }, [dispatch]);

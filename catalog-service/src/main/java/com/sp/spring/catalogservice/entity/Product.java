@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 //import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.sp.spring.catalogservice.util.DateAudit;
+import com.sp.spring.commons.util.DateAudit;
 import com.sp.spring.catalogservice.web.ProductResponse;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;

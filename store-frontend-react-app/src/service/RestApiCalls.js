@@ -2,6 +2,14 @@ import { APP_CLIENT_ID, APP_CLIENT_SECRET, BACKEND_API_GATEWAY_URL } from '../co
 import axios from 'axios';
 import qs from 'qs';
 
+export const postSignupApi = (singupRequestBody) => {
+  const axiosConfig = getAxiosConfig();
+  const responseData = axios.post(`${BACKEND_API_GATEWAY_URL}/api/account/signup`, singupRequestBody, axiosConfig).then((response) => {
+    return response.data;
+  });
+  return responseData;
+};
+
 export const postLoginApi = async (loginRequestBody) => {
   const axiosConfig = {
     headers: {
@@ -46,6 +54,14 @@ export const getProductDetailApi = async (productId) => {
 export const createProductApi = async (productReqBody) => {
   const axiosConfig = getAxiosConfig();
   const responseData = await axios.post(`${BACKEND_API_GATEWAY_URL}/api/catalog/product`, productReqBody, axiosConfig).then((response) => {
+    return response.data;
+  });
+  return responseData;
+};
+
+export const updateProductDetailApi = async (productReqBody) => {
+  const axiosConfig = getAxiosConfig();
+  const responseData = await axios.put(`${BACKEND_API_GATEWAY_URL}/api/catalog/product`, productReqBody, axiosConfig).then((response) => {
     return response.data;
   });
   return responseData;
@@ -99,10 +115,44 @@ export const uploadImageApi = async (axiosConfig, formData) => {
   return responseData;
 };
 
+export const addToCartApi = async (addToCartRequestBody) => {
+  const axiosConfig = getAxiosConfig();
+  const responseData = axios
+    .post(`${BACKEND_API_GATEWAY_URL}/api/order/cart`, addToCartRequestBody, axiosConfig)
+    .then((response) => {
+      return response.data;
+    });
+  return responseData;
+};
+
+export const removeCartItemApi = async (cartItemId) => {
+  const axiosConfig = getAxiosConfig();
+  const responseData = axios.delete(`${BACKEND_API_GATEWAY_URL}/api/order/cart/cartItem/${cartItemId}`, axiosConfig).then((response) => {
+    return response.data;
+  });
+  return responseData;
+};
+
+export const getCartDetailsApi = async () => {
+  const axiosConfig = getAxiosConfig();
+  const cartDetails = await axios.get(`${BACKEND_API_GATEWAY_URL}/api/order/cart`, axiosConfig).then((response) => {
+    return response.data;
+  });
+
+  let sortedCart = {
+    ...cartDetails,
+    cartItems: cartDetails.cartItems.sort((a, b) => {
+      return a.cartItemId.localeCompare(b.cartItemId);
+    })
+  };
+
+  return sortedCart;
+};
+
 const getAxiosConfig = () => {
   const axiosConfig = {
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json'    
     }
   };
 

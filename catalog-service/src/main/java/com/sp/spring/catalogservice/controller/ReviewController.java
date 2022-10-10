@@ -11,20 +11,19 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 public class ReviewController {
 
     @Autowired
     ReviewService reviewService;
 
-    /*@PostMapping("/review")
+    @PostMapping("/review")
     public ResponseEntity<?> createOrUpdateReview(@RequestBody @Valid CreateOrUpdateReviewRequest createOrUpdateReviewRequest) {
-
         reviewService.createOrUpdateReview(createOrUpdateReviewRequest);
         return ResponseEntity.ok().build();
-    }*/
+    }
 
     @GetMapping("/review")
-    @CrossOrigin("*")
     public ResponseEntity<?> getAllReviewsForProduct(@RequestParam("productId") String productId) {
         List<ProductReview> reviewsForProduct = reviewService.getReviewsForProduct(productId);
         return ResponseEntity.ok(reviewsForProduct);

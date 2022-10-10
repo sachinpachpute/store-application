@@ -6,11 +6,31 @@ spring:
     name: API-GATEWAY-SERVICE
   cloud:
     gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
       routes:
+        - id: order-service
+          uri: lb://ORDER-SERVICE
+          predicates:
+            - Path=/api/order/**
+          filters:
+            - StripPrefix=2
         - id: catalog-service
           uri: lb://CATALOG-SERVICE
           predicates:
             - Path=/api/catalog/**
+          filters:
+            - StripPrefix=2
+        - id: account-service
+          uri: lb://ACCOUNT-SERVICE
+          predicates:
+            - Path=/api/account/**
           filters:
             - StripPrefix=2
 

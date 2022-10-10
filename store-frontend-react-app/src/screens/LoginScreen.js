@@ -17,6 +17,13 @@ const LoginScreen = (props) => {
 
   let navigateLog = useNavigate()
   let location = useLocation()
+  
+//var desire = location.search.slice(1).split("&")[0].split("=")[1]
+// Example: let's take url http://example.com?name=jon&country=us
+// location.search will be equal to ?name=jon&country=us
+// .slice(1) skips the ?, returning the rest of the string.
+// .split("&")[0] splits it into two strings (name=jon and country=us) and takes first one
+// .split("=")[1] splits name=jon into name and jon and takes the second one. Done!
 
   const redirect = location.search ? location.search.split('=')[1] : '/'
 

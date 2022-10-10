@@ -10,6 +10,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.DataOutput;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -19,6 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Stream;
 
 /*
     Lot of improvement s can be done in image upload section.
@@ -50,8 +52,11 @@ public class ImageUploadController {
     }*/
 
     @GetMapping(path = "image/{imageId}")
-    @CrossOrigin("*")
     public ResponseEntity<?> getImage(@PathVariable String imageId) throws IOException {
+        /*Stream<Path> list = Files.list(path);
+        list.limit(5).forEach(System.out::println);*/
+
+        /*TODO - Ugly way to render images. Should come from S3 like static repository*/
         Optional<Path> images = Files.list(Paths.get("images")).filter(img -> img.getFileName().toString().equals(imageId)).findFirst();
         if (images.isPresent()) {
             final ByteArrayResource inputStream = new ByteArrayResource(Files.readAllBytes(images.get()));

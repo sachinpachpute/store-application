@@ -6,10 +6,17 @@ import {
   productReviewsSlice,
   productReviewCreateSlice,
   productCreateSlice,
+  productUpdateSlice,
 } from './reducers/productSlice';
 import{
   userLoginSlice,
+  userRegisterSlice,
 } from './reducers/userSlice';
+import{
+  cartAddSlice,
+  cartDetailSlice,
+  cartRemoveSlice,
+} from './reducers/cartSlice';
 import ToastMiddleware from './middlewares/ToastMiddleware';
 
 const store = configureStore({ 
@@ -19,7 +26,12 @@ const store = configureStore({
     productReviews: productReviewsSlice.reducer,
     productReviewCreate: productReviewCreateSlice.reducer,
     productCreate: productCreateSlice.reducer,
+    productUpdate: productUpdateSlice.reducer,
+    cart: cartDetailSlice.reducer,
+    cartAdd: cartAddSlice.reducer,
+    cartRemove: cartRemoveSlice.reducer,
     userLogin: userLoginSlice.reducer,
+    userRegister: userRegisterSlice.reducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger, ToastMiddleware),
 })
