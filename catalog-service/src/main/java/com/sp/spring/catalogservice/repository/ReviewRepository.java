@@ -1,6 +1,6 @@
 package com.sp.spring.catalogservice.repository;
 
-import com.sp.spring.catalogservice.entity.ProductReview;
+import com.sp.spring.catalogservice.repository.dao.ProductReview;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

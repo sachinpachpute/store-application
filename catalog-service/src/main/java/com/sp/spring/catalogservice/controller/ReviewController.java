@@ -1,6 +1,6 @@
 package com.sp.spring.catalogservice.controller;
 
-import com.sp.spring.catalogservice.entity.ProductReview;
+import com.sp.spring.catalogservice.repository.dao.ProductReview;
 import com.sp.spring.catalogservice.service.ReviewService;
 import com.sp.spring.catalogservice.web.CreateOrUpdateReviewRequest;
 import org.springframework.beans.factory.annotation.Autowired;

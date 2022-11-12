@@ -16,6 +16,11 @@ import java.net.URI;
 //TODO Sachin
 public class ProductController {
 
+    @GetMapping
+    public String home(){
+        return "Hello, JWT!";
+    }
+
     @Autowired
     private ProductService productService;
 

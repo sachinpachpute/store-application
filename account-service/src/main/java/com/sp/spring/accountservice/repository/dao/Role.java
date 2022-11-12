@@ -1,4 +1,4 @@
-package com.sp.spring.accountservice.entity;
+package com.sp.spring.accountservice.repository.dao;
 
 import com.sp.spring.commons.util.DateAudit;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -31,18 +31,18 @@ public class Role extends DateAudit {
       cascade = CascadeType.ALL,
       mappedBy = "roles")
   @JsonIgnore
-  private Set<User> users = new HashSet<>();
+  private Set<User> people = new HashSet<>();
 
   @Column(name = "ROLE_DESCRIPTION")
   private String roleDescription;
 
   public void addUser(User user) {
-    this.users.add(user);
+    this.people.add(user);
     user.getRoles().add(this);
   }
 
   public void removeUser(User user) {
-    this.users.remove(user);
+    this.people.remove(user);
     user.getRoles().remove(this);
   }
 }

@@ -18,6 +18,7 @@ export const postLoginApi = async (loginRequestBody) => {
     }
   };
   const loginRequestBodyEncoded = qs.stringify(loginRequestBody);
+  alert(loginRequestBody);
   const responseData = await axios
     .post(`${BACKEND_API_GATEWAY_URL}/api/account/oauth/token`, loginRequestBodyEncoded, axiosConfig)
     .then((response) => {
@@ -28,7 +29,9 @@ export const postLoginApi = async (loginRequestBody) => {
 
 export const getUserInfoApi = async () => {
   const axiosConfig = getAxiosConfig();
+  alert('second');
   const responseData = await axios.get(`${BACKEND_API_GATEWAY_URL}/api/account/userInfo`, axiosConfig).then((response) => {
+    alert('third');
     return response.data;
   });
   return responseData;

@@ -1,9 +1,9 @@
 package com.sp.spring.catalogservice.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sp.spring.catalogservice.entity.Product;
-import com.sp.spring.catalogservice.entity.ProductCategory;
-import com.sp.spring.catalogservice.entity.ProductReview;
+import com.sp.spring.catalogservice.repository.dao.Product;
+import com.sp.spring.catalogservice.repository.dao.ProductCategory;
+import com.sp.spring.catalogservice.repository.dao.ProductReview;
 import com.sp.spring.catalogservice.repository.ProductCategoryRepository;
 import com.sp.spring.catalogservice.repository.ProductRepository;
 import com.sp.spring.catalogservice.repository.ReviewRepository;

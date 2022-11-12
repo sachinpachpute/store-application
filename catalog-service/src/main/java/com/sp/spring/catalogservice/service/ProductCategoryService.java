@@ -1,6 +1,6 @@
 package com.sp.spring.catalogservice.service;
 
-import com.sp.spring.catalogservice.entity.ProductCategory;
+import com.sp.spring.catalogservice.repository.dao.ProductCategory;
 import com.sp.spring.catalogservice.web.CreateProductCategoryRequest;
 import com.sp.spring.catalogservice.web.UpdateProductCategoryRequest;
 import org.springframework.data.domain.Page;

@@ -38,7 +38,7 @@ export const listProductsAction = (pageNumber) => async (dispatch) => {
     const responseData = await getAllProductsDetailApi(pageNumber || 0);
     dispatch(listProductsSuccess(responseData));
   } catch (error) {
-    dispatch(listProductsFail(getErrorMessage(error)));
+    //dispatch(listProductsFail(getErrorMessage(error)));
   }  
 };
 

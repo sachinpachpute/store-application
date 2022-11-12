@@ -1,11 +1,10 @@
 package com.sp.spring.catalogservice.service.impl;
 
-import com.sp.spring.catalogservice.entity.ProductReview;
+import com.sp.spring.catalogservice.repository.dao.ProductReview;
 import com.sp.spring.catalogservice.repository.ReviewRepository;
 //import com.sp.spring.catalogservice.service.ProductService;
 import com.sp.spring.catalogservice.service.ReviewService;
 import com.sp.spring.catalogservice.web.CreateOrUpdateReviewRequest;
-import com.sp.spring.catalogservice.web.ProductResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.core.Authentication;
 //import org.springframework.security.core.context.SecurityContextHolder;

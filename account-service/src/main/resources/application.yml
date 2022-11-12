@@ -1,32 +1,36 @@
 server:
   port: ${SERVER_PORT:4001}
 
+security:
+  jwt:
+    key-store: classpath:JWTKeystore.p12
+    key-store-password: devdcorespass
+    key-pair-alias: jwt-key
+    key-pair-password: devdcorespass
+    public-key: classpath:jwt-signing-public-key.txt
+
 spring:
   application:
     name: ACCOUNT-SERVICE
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
-    database: h2
+    database: mysql
     open-in-view: true
+    generate-ddl: true
     hibernate:
-      ddl-auto: none
-      naming:
-        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      ddl-auto: update
     properties:
       hibernate:
-        show_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
         use_sql_comments: true
+        show_sql: true
         format_sql: true
   datasource:
-    driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:bookstore_db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
-    username: sa
-    password:
-  h2:
-    console:
-      enabled: true
-      settings:
-        web-allow-others: true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/bookstore_db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: root
+    password: PaSSworD
+  main:
+    allow-bean-definition-overriding: true
 
 eureka:
   client:

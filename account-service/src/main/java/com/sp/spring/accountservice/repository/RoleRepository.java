@@ -1,8 +1,7 @@
 package com.sp.spring.accountservice.repository;
 
-import com.sp.spring.accountservice.entity.Role;
+import com.sp.spring.accountservice.repository.dao.Role;
 import org.springframework.data.repository.CrudRepository;
-import com.sp.spring.accountservice.entity.User;
 
 import java.util.List;
 import java.util.Optional;

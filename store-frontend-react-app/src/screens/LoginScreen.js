@@ -8,6 +8,8 @@ import { login } from '../actions/userActions';
 import FormContainer from '../components/FormContainer';
 import FullPageLoader from '../components/FullPageLoader';
 
+window.Buffer = window.Buffer || require("buffer").Buffer;
+
 const LoginScreen = (props) => {
   const [userNameOrEmail, setUserNameOrEmail] = useState('');
   const [password, setPassword] = useState('');

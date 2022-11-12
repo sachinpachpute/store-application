@@ -33,10 +33,13 @@ export const login = (usernameOrEmail, password) => async (dispatch) => {
       token: loginResponse.access_token
     };
 
+    alert('inside login method in userActions')
     localStorage.setItem('userInfo', JSON.stringify(userInfo));
+    alert('inside login method in userActions 2')
 
     //Get UserInfo
     const userInfoResponse = await getUserInfoApi();
+    alert('inside login method in userActions 3')
     userInfoResponse.token = loginResponse.access_token;
     userInfoResponse.refresh_token = loginResponse.refresh_token;
     

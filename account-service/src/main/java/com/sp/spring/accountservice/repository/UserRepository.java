@@ -2,7 +2,7 @@ package com.sp.spring.accountservice.repository;
 
 
 
-import com.sp.spring.accountservice.entity.User;
+import com.sp.spring.accountservice.repository.dao.User;
 import org.springframework.data.repository.CrudRepository;
 
 import javax.transaction.Transactional;

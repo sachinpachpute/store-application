@@ -1,4 +1,4 @@
-package com.sp.spring.accountservice.entity;
+package com.sp.spring.accountservice.repository.dao;
 
 import com.sp.spring.commons.util.DateAudit;
 import lombok.*;
@@ -19,8 +19,8 @@ public class User extends DateAudit {
     @ManyToMany(fetch = FetchType.EAGER,
             cascade = CascadeType.DETACH)
     @JoinTable(name = "USER_ROLES",
-            joinColumns = {@JoinColumn(name = "user_id")},
-            inverseJoinColumns = {@JoinColumn(name = "role_id")})
+            joinColumns = {@JoinColumn(name = "USER_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "ROLE_ID")})
     Set<Role> roles;
 
     @Id

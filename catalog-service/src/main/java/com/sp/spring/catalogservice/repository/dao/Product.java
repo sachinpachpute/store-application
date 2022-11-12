@@ -1,4 +1,4 @@
-package com.sp.spring.catalogservice.entity;
+package com.sp.spring.catalogservice.repository.dao;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;

@@ -8,6 +8,8 @@ import FormContainer from '../components/FormContainer';
 import FullPageLoader from '../components/FullPageLoader';
 import { USER_REGISTER_RESET } from '../constants/userConstants';
 
+window.Buffer = window.Buffer || require("buffer").Buffer;
+
 const RegisterScreen = (props) => {
   const [userName, setUserName] = useState('');
   const [firstName, setFirstName] = useState('');

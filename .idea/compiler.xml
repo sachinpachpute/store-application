@@ -18,6 +18,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="another-commons" target="11" />
+      <module name="authorization-server" target="11" />
       <module name="backup-commons" target="11" />
       <module name="common-code" target="11" />
       <module name="fifth-commons" target="11" />
@@ -37,6 +38,7 @@
       <module name="account-service" options="-parameters" />
       <module name="another-commons" options="-parameters" />
       <module name="api-gateway-service" options="-parameters" />
+      <module name="authorization-server" options="-parameters" />
       <module name="backup-commons" options="-parameters" />
       <module name="catalog-service" options="-parameters" />
       <module name="common-code" options="-parameters" />

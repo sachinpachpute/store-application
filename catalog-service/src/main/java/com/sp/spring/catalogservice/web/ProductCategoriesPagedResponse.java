@@ -1,6 +1,6 @@
 package com.sp.spring.catalogservice.web;
 
-import com.sp.spring.catalogservice.entity.ProductCategory;
+import com.sp.spring.catalogservice.repository.dao.ProductCategory;
 import lombok.Data;
 import org.springframework.data.domain.Page;
 
