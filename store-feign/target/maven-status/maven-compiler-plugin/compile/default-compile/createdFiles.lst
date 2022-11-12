@@ -1,0 +1,7 @@
+com\sp\spring\storecommons\web\GetUserResponse.class
+com\sp\spring\storecommons\web\GetUserInfoResponse$GetUserInfoResponseBuilder.class
+com\sp\spring\storecommons\web\GetProductResponse$GetProductResponseBuilder.class
+com\sp\spring\storecommons\feign\CatalogFeignClient.class
+com\sp\spring\storecommons\web\GetProductResponse.class
+com\sp\spring\storecommons\web\GetUserInfoResponse.class
+com\sp\spring\storecommons\feign\AccountFeignClient.class
