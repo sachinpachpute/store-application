@@ -16,26 +16,20 @@ import {
   postSignupApi,
 } from '../service/RestApiCalls';
 
-export const login = (usernameOrEmail, password) => async (dispatch) => {
+export const login = (code) => async (dispatch) => {
   try {
     dispatch(userLoginRequest());
 
-    const loginRequest = {
-      grant_type: 'password',
-      username:usernameOrEmail,
-      password: password
-    };
-
     //Login
-    const loginResponse = await postLoginApi(loginRequest);
-
+    const loginResponse = await postLoginApi(code);
+    console.log(loginResponse.access_token);    
+    alert(loginResponse.access_token);
+alert('before userInfo');
     const userInfo = {
       token: loginResponse.access_token
     };
 
-    alert('inside login method in userActions')
     localStorage.setItem('userInfo', JSON.stringify(userInfo));
-    alert('inside login method in userActions 2')
 
     //Get UserInfo
     const userInfoResponse = await getUserInfoApi();
@@ -49,6 +43,39 @@ export const login = (usernameOrEmail, password) => async (dispatch) => {
     dispatch(userLoginFail(getErrorMessage(error)));
   }  
 };
+
+// export const login = (usernameOrEmail, password) => async (dispatch) => {
+//   try {
+//     dispatch(userLoginRequest());
+
+//     const loginRequest = {
+//       grant_type: 'password',
+//       username:usernameOrEmail,
+//       password: password
+//     };
+
+//     //Login
+//     const loginResponse = await postLoginApi(loginRequest);
+
+//     const userInfo = {
+//       token: loginResponse.access_token
+//     };
+
+//     localStorage.setItem('userInfo', JSON.stringify(userInfo));
+//     alert('inside login method in userActions 2')
+
+//     //Get UserInfo
+//     const userInfoResponse = await getUserInfoApi();
+//     alert('inside login method in userActions 3')
+//     userInfoResponse.token = loginResponse.access_token;
+//     userInfoResponse.refresh_token = loginResponse.refresh_token;
+    
+//     dispatch(userLoginSuccess(userInfoResponse));
+  
+//   } catch (error) {
+//     dispatch(userLoginFail(getErrorMessage(error)));
+//   }  
+// };
 
 export const logout = () => (dispatch) => {
   localStorage.clear();

@@ -9,7 +9,10 @@
         <outputRelativeToContentRoot value="true" />
         <module name="store-feign" />
         <module name="api-gateway-service" />
+        <module name="store-commons-new" />
         <module name="catalog-service" />
+        <module name="auth-server" />
+        <module name="resource-server" />
         <module name="eureka-discovery-service" />
         <module name="order-service" />
         <module name="account-service" />
@@ -38,6 +41,7 @@
       <module name="account-service" options="-parameters" />
       <module name="another-commons" options="-parameters" />
       <module name="api-gateway-service" options="-parameters" />
+      <module name="auth-server" options="-parameters" />
       <module name="authorization-server" options="-parameters" />
       <module name="backup-commons" options="-parameters" />
       <module name="catalog-service" options="-parameters" />
@@ -48,10 +52,12 @@
       <module name="hello-world" options="-parameters" />
       <module name="order-service" options="-parameters" />
       <module name="quick-start" options="" />
+      <module name="resource-server" options="-parameters" />
       <module name="sixth-commons" options="-parameters" />
       <module name="store-application" options="-parameters" />
       <module name="store-catalog-service" options="-parameters" />
       <module name="store-commons" options="-parameters" />
+      <module name="store-commons-new" options="-parameters" />
       <module name="store-feign" options="-parameters" />
       <module name="third-common" options="-parameters" />
       <module name="third-commons" options="-parameters" />

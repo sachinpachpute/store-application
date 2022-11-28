@@ -48,8 +48,8 @@ const Header = (props) => {
                   <NavDropdown.Item onClick={logoutHandler}>Logout</NavDropdown.Item>
                 </NavDropdown>
               ) : (
-                <LinkContainer to='/login'>
-                  <Nav.Link href='/login'>
+                <LinkContainer to='/redirect'>
+                  <Nav.Link href='/redirect'>
                     <i className='p-1 fas fa-user'></i>Sign In
                   </Nav.Link>
                 </LinkContainer>

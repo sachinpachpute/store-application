@@ -13,6 +13,7 @@ import ProductListScreenTemp from './screens/ProductListScreenTemp';
 import ProductListScreen from './screens/ProductListScreen';
 import ProductCreateScreen from './screens/ProductCreateScreen';
 import ProductEditScreen from './screens/ProductEditScreen';
+import RedirectScreen from './screens/RedirectScreen';
 import { createBrowserHistory } from 'history';
 
 export const history = createBrowserHistory();
@@ -25,6 +26,8 @@ function App() {
           <Container>
           <Routes>
               <Route path="/login" element={<LoginScreen/>} />
+              <Route path="/redirect" element={<RedirectScreen/>} />
+              <Route path="/authorized" element={<RedirectScreen/>} />
               <Route path="/register" element={<RegisterScreen />} />
               /*<Route path="/profile" element={<Profile/>} />*/
               <Route path="/productlisttemp" element={<ProductListScreenTemp/>} />

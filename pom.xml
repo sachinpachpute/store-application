@@ -11,7 +11,10 @@
 		<module>api-gateway-service</module>
 		<module>store-feign</module>
         <module>account-service</module>
-    </modules>
+        <module>auth-server</module>
+        <module>resource-server</module>
+		<module>store-commons-new</module>
+	</modules>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>

@@ -1,4 +1,4 @@
-import { APP_CLIENT_ID, APP_CLIENT_SECRET, BACKEND_API_GATEWAY_URL } from '../constants/appConstants';
+import { BACKEND_API_GATEWAY_URL, CLIENT_ID, REDIRECT_URI, AUTHORIZATION_SERVER_BASE_URL } from '../constants/appConstants';
 import axios from 'axios';
 import qs from 'qs';
 
@@ -10,27 +10,95 @@ export const postSignupApi = (singupRequestBody) => {
   return responseData;
 };
 
-export const postLoginApi = async (loginRequestBody) => {
+export const postLoginApi = async (code) => {
+
+  // const PKCEAuthCodeSecondStep = ( code ) => {
+  //   let oidcURL = `${process.env.OIDC_IDP_URL}/token`;
+  
+  //   let params = qs.stringify( {
+  //     grant_type: "authorization_code",
+  //     redirect_uri: "http://localhost/login_oidc",
+  //     client_id: process.env.OIDC_CLIENT_ID,
+  //     code_verifier: localStorage.getItem( 'code_verifier' ),
+  //     code
+  //   } );
+  
+  //   localStorage.removeItem( 'code_verifier' );
+  //   return axios.post( oidcURL, params,
+  //     { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
+  //   ).then( res => {
+  //     localStorage.setItem( 'access_token', res.data.access_token );
+  //     return res.data
+  //   } );
+  // }
+
+  //-----------------------------------------------------------
+alert('postLoginApi:code verifier before authorize call: ' + sessionStorage.getItem(('codeVerifier')));
+alert('postLoginApi: code challenge before authorize call: ' + sessionStorage.getItem(('codeChallenge')));
+
+  const params = {
+    grant_type: 'authorization_code',
+    redirect_uri: REDIRECT_URI,
+    client_id: CLIENT_ID,
+    code_verifier: sessionStorage.getItem('codeVerifier'),
+    code
+  };
+  const paramsEncoded = qs.stringify(params);  
+  sessionStorage.removeItem('codeVerifier');
+
   const axiosConfig = {
     headers: {
-      'Authorization': 'Basic ' + Buffer.from(APP_CLIENT_ID + ':' + APP_CLIENT_SECRET).toString('base64'),
       'Content-Type': 'application/x-www-form-urlencoded'
     }
   };
-  const loginRequestBodyEncoded = qs.stringify(loginRequestBody);
-  alert(loginRequestBody);
+    
   const responseData = await axios
-    .post(`${BACKEND_API_GATEWAY_URL}/api/account/oauth/token`, loginRequestBodyEncoded, axiosConfig)
-    .then((response) => {
+    .post(`${AUTHORIZATION_SERVER_BASE_URL}/oauth2/token`, paramsEncoded, axiosConfig)
+    .then((response) => {           
       return response.data;
     });
   return responseData;
 };
 
+// const headers = new Headers();
+// headers.append('Content-type', 'application/x-www-form-urlencoded');
+            
+//             const verifier = localStorage.getItem('codeVerifier');
+            
+            
+//             const url = `http://auth-server:3001/oauth2/token?client_id=client&redirect_uri=http://127.0.0.1:3000/authorized&grant_type=authorization_code&code=${code}&code_verifier=qPsH306-ZDDaOE8DFzVn05TkN3ZZoVmI_6x4LsVglQI`;
+            
+
+//             //localStorage.removeItem('codeVerifier');
+
+//             console.log(url);
+//             alert(url);
+
+//            const responseData = fetch(url, {
+//                 method: 'POST',
+//                 mode: 'cors',
+//                 headers
+//             }).then(async (response) => {
+//                 //alert(response);
+//                 const token = await response.json();
+//                 alert(token.id_token);                
+//                 //alert(token);
+//                 if(token?.id_token) {
+//                     localStorage.setItem('id_token', token.id_token);
+//                     alert('redirecting to home screen');
+//                     //navigate('/');
+//                 }
+//             }).catch((err) => {
+//                 console.log(err);
+//             })
+//             return responseData;
+//             };
+
 export const getUserInfoApi = async () => {
   const axiosConfig = getAxiosConfig();
   alert('second');
-  const responseData = await axios.get(`${BACKEND_API_GATEWAY_URL}/api/account/userInfo`, axiosConfig).then((response) => {
+  //const responseData = await axios.get(`${BACKEND_API_GATEWAY_URL}/api/account/userInfo`, axiosConfig).then((response) => {
+    const responseData = await axios.get(`${AUTHORIZATION_SERVER_BASE_URL}/userInfo`, axiosConfig).then((response) => {
     alert('third');
     return response.data;
   });
