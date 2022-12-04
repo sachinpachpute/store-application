@@ -19,8 +19,19 @@ public class UserController {
   @GetMapping("/userInfo")
   public ResponseEntity<GetUserInfoResponse> getUserInfo() {
     GetUserInfoResponse userInfo = userService.getUserInfo();
+    System.out.println("Hello 1");
+    System.out.println("Hello 2");
+    System.out.println("Hello 3");
+
     return new ResponseEntity<>(userInfo, HttpStatus.OK);
   }
 
+  @GetMapping("/demoNew")
+  public String demoNew() {
+    System.out.println("Hello 1");
+    System.out.println("Hello 2");
+    System.out.println("Hello 3");
+    return "Demo";
+  }
 
 }

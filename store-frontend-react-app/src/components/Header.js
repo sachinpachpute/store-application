@@ -11,9 +11,19 @@ const Header = (props) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+  //alert('userLogin '+userLogin);
+  //alert('userLogin.userInfo '+userLogin.userInfo);
+  
+  // if(userInfo === null){
+  //   alert('userInfo is null');
+  // } else {
+  //   alert('userInfo: '+userInfo);
+  // }
+  
   const dispatch = useDispatch();
 
   const logoutHandler = () => {
+    alert('log out handler');
     dispatch(logout());   
   };
 

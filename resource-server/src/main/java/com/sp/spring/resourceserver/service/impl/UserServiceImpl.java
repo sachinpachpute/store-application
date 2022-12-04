@@ -23,32 +23,10 @@ public class UserServiceImpl implements UserService {
   @Autowired
   private UserRepository userRepository;
 
-
-
-  @Override
-  public GetUserResponse getUserByUserName(String userName) {
-
-    Optional<User> userNameOrEmailOptional = userRepository
-        .findByUserNameOrEmail(userName, userName);
-    User userByUserName = userNameOrEmailOptional.orElseThrow(() ->
-        new RunTimeExceptionPlaceHolder("UserName or Email doesn't exist!!")
-    );
-
-    return GetUserResponse.builder()
-        .userId(userByUserName.getUserId())
-        .userName(userByUserName.getUserName())
-        .firstName(userByUserName.getFirstName())
-        .lastName(userByUserName.getLastName())
-        .email(userByUserName.getEmail())
-        .roles(userByUserName.getRoles())
-        .build();
-  }
-
-
   @Override
   public GetUserInfoResponse getUserInfo() {
     Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-    String userName = (String) authentication.getPrincipal();
+    String userName = (String) authentication.getName();
 
     GetUserResponse userByUserName = getUserByUserName(userName);
 
@@ -61,6 +39,23 @@ public class UserServiceImpl implements UserService {
         .build();
 
   }
+  @Override
+  public GetUserResponse getUserByUserName(String userName) {
 
+    Optional<User> userNameOrEmailOptional = userRepository
+            .findByUserNameOrEmail(userName, userName);
+    User userByUserName = userNameOrEmailOptional.orElseThrow(() ->
+            new RunTimeExceptionPlaceHolder("UserName or Email doesn't exist!!")
+    );
+
+    return GetUserResponse.builder()
+            .userId(userByUserName.getUserId())
+            .userName(userByUserName.getUserName())
+            .firstName(userByUserName.getFirstName())
+            .lastName(userByUserName.getLastName())
+            .email(userByUserName.getEmail())
+            .roles(userByUserName.getRoles())
+            .build();
+  }
 
 }

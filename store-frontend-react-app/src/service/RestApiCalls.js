@@ -33,8 +33,8 @@ export const postLoginApi = async (code) => {
   // }
 
   //-----------------------------------------------------------
-alert('postLoginApi:code verifier before authorize call: ' + sessionStorage.getItem(('codeVerifier')));
-alert('postLoginApi: code challenge before authorize call: ' + sessionStorage.getItem(('codeChallenge')));
+//alert('postLoginApi:code verifier before authorize call: ' + sessionStorage.getItem(('codeVerifier')));
+//alert('postLoginApi: code challenge before authorize call: ' + sessionStorage.getItem(('codeChallenge')));
 
   const params = {
     grant_type: 'authorization_code',
@@ -96,19 +96,14 @@ alert('postLoginApi: code challenge before authorize call: ' + sessionStorage.ge
 
 export const getUserInfoApi = async () => {
   const axiosConfig = getAxiosConfig();
-  alert('second');
-  //const responseData = await axios.get(`${BACKEND_API_GATEWAY_URL}/api/account/userInfo`, axiosConfig).then((response) => {
-    const responseData = await axios.get(`${AUTHORIZATION_SERVER_BASE_URL}/userInfo`, axiosConfig).then((response) => {
-    alert('third');
+  alert('access token : '+JSON.parse(localStorage.getItem('userInfo'))?.token)  ;
+    const responseData = await axios.get(`${BACKEND_API_GATEWAY_URL}/api/resource/userInfo`, axiosConfig).then((response) => {
     return response.data;
   });
   return responseData;
 };
 
-export const getAllProductsDetailApi = async (pageNumber) => {
-    /*const responseData = axios.get("https://fakestoreapi.com/products").then((response) => {
-    return response.data;*/
-    //const responseData = axios.get("http://localhost:6001/products").then((response) => {
+export const getAllProductsDetailApi = async (pageNumber) => {    
     const responseData = axios.get(`${BACKEND_API_GATEWAY_URL}/api/catalog/products?page=${pageNumber}&size=8`).then((response) => {
     return response.data;
   });

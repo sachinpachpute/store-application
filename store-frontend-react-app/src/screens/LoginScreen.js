@@ -46,7 +46,7 @@ const LoginScreen = (props) => {
         <h1>Sign In</h1>
         {error && <Message variant='danger'>{JSON.stringify(error)}</Message>}
         <Form onSubmit={loginSubmitHandler}>
-          <Form.Group controlId='userNameOrEmail'>
+          <Form.Group controlId='username'>
             <Form.Label>Email Address</Form.Label>
             <Form.Control
               placeholder='Username or Email'

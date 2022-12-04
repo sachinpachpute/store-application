@@ -22,9 +22,10 @@ export const login = (code) => async (dispatch) => {
 
     //Login
     const loginResponse = await postLoginApi(code);
-    console.log(loginResponse.access_token);    
-    alert(loginResponse.access_token);
-alert('before userInfo');
+    
+    console.log(loginResponse.access_token);
+    
+    //alert(loginResponse.access_token);
     const userInfo = {
       token: loginResponse.access_token
     };
@@ -33,9 +34,8 @@ alert('before userInfo');
 
     //Get UserInfo
     const userInfoResponse = await getUserInfoApi();
-    alert('inside login method in userActions 3')
     userInfoResponse.token = loginResponse.access_token;
-    userInfoResponse.refresh_token = loginResponse.refresh_token;
+    //userInfoResponse.refresh_token = loginResponse.refresh_token;
     
     dispatch(userLoginSuccess(userInfoResponse));
   

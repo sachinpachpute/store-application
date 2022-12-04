@@ -47,6 +47,7 @@ public class AuthorizationServerConfig {
     public SecurityFilterChain authServerSecurityFilterChain(HttpSecurity http) throws Exception {
         OAuth2AuthorizationServerConfiguration.applyDefaultSecurity(http);
         corsCustomizer.corsCustomizer(http); //CORS must be processed before Spring Security because the pre-flight request will not contain any cookies (i.e. the JSESSIONID ). If the request does not contain any cookies and Spring Security is first, the request will determine the user is not authenticated (since there are no cookies in the request) and reject it.
+        //return http.formLogin().loginPage("http://127.0.0.1:3000/login").and().build();
         return http.formLogin(Customizer.withDefaults()).build();
         /*return http.formLogin().loginPage("http://127.0.0.1:3000/login")
                 .failureForwardUrl("http://127.0.0.1:3000/login/?error=true").and().build();*/

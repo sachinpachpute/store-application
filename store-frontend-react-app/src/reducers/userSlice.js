@@ -18,6 +18,9 @@ export const userLoginSlice = createSlice({
         state.error = action.payload;
       },
       userLogout: (state, action) => {     
+        // localStorage.clear();
+        // sessionStorage.clear();
+        // window.location.href = '/login';        
         state = {};   
       },
     }
@@ -46,7 +49,8 @@ export const userRegisterSlice = createSlice({
       state.error = null;
     },
     userRegisterLogout: (state, action) => {   
-      window.location.href = '/login';        
+      window.location.href = '/login';    
+      state = {};
     },
   }
 });
