@@ -24,6 +24,7 @@ spring:
   main:
     allow-bean-definition-overriding: true
 
+
 eureka:
   client:
     serviceUrl:
@@ -32,3 +33,19 @@ eureka:
     fetch-registry: true #eureka discovery is enabled in this profile
   instance:
     prefer-ip-address: false
+
+com:
+  sp:
+    spring:
+      jwt:
+        secret-key: 093617ebfa4b9af9700db274ac204ffa34195494d97b9c26c23ad561de817926
+      security:
+        client-id: client
+        response-type: code
+        code-challenge-method: S256
+        redirect-uri: https://www.github.com/hardikSinghBehl, http://127.0.0.1:3000/authorized,
+          https://www.linkedin.com/in/hardiksinghbehl
+        refresh:
+          grant-type: refresh_token
+        code-expiration-minutes: '5'
+        grant-type: authorization_code

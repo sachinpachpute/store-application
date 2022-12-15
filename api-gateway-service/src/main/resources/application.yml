@@ -33,12 +33,12 @@ spring:
             - Path=/api/account/**
           filters:
             - StripPrefix=2
-#        - id: auth-server
-#          uri: lb://AUTH-SERVER
-#          predicates:
-#            - Path=/api/auth/**
-#          filters:
-#            - StripPrefix=2
+        - id: auth-server
+          uri: lb://AUTH-SERVER
+          predicates:
+            - Path=/api/auth/**
+          filters:
+            - StripPrefix=2
         - id: resource-server
           uri: lb://RESOURCE-SERVER
           predicates:
